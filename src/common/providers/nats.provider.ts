@@ -1,7 +1,11 @@
-import { Provider } from "@nestjs/common";
-import { NATS_SERVICE } from "../constants";
-import { ClientOptions, ClientProxyFactory, Transport } from "@nestjs/microservices";
-import { envs } from "src/config";
+import { Provider } from '@nestjs/common';
+import { NATS_SERVICE } from '../constants';
+import {
+  ClientOptions,
+  ClientProxyFactory,
+  Transport,
+} from '@nestjs/microservices';
+import { envs } from 'src/config';
 
 export const natsProvider: Provider = {
   provide: NATS_SERVICE,
@@ -9,9 +13,9 @@ export const natsProvider: Provider = {
     const config: ClientOptions = {
       transport: Transport.NATS,
       options: {
-        servers: [envs.natsUrl]
+        servers: [envs.natsUrl],
       },
-    }
-    return ClientProxyFactory.create(config)
-  }
-}
+    };
+    return ClientProxyFactory.create(config);
+  },
+};
