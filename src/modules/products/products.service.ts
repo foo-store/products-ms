@@ -28,7 +28,7 @@ export class ProductsService extends PrismaClient implements OnModuleInit {
 
       const newProduct = await this.product.create({ data: rest });
 
-      this.clientProxy.emit("add-product-to-inventory", {
+      this.clientProxy.emit("product.created", {
         productId: newProduct.id,
         quantity,
       });

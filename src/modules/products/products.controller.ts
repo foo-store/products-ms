@@ -8,12 +8,12 @@ import { CreateProductDto } from './dto';
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) { }
 
-  @MessagePattern('create-product')
+  @MessagePattern('product.create')
   createProduct(@Payload() productDto: CreateProductDto) {
     return this.productsService.create(productDto);
   }
 
-  @MessagePattern('get-products')
+  @MessagePattern('product.list')
   getProducts(@Payload() paginationDto: PaginationDto) {
     return this.productsService.getAll(paginationDto);
   }
