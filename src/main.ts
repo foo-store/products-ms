@@ -26,6 +26,6 @@ async function bootstrap() {
 
   await app.listen();
 
-  logger.log(`Microservice is listening on ${envs.natsUrl}`);
+  logger.log(`Products Microservice is listening on ${envs.natsUrl}`);
 }
 bootstrap();

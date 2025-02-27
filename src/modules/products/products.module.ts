@@ -9,4 +9,4 @@ import { ProductsService } from './products.service';
   providers: [ProductsService, natsProvider],
   imports: [PaginationModule],
 })
-export class ProductsModule { }
+export class ProductsModule {}

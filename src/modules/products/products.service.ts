@@ -17,7 +17,8 @@ export class ProductsService extends PrismaClient implements OnModuleInit {
 
   constructor(
     @Inject(NATS_SERVICE) private readonly clientProxy: ClientProxy,
-    private readonly paginationService: PaginationService) {
+    private readonly paginationService: PaginationService,
+  ) {
     super();
   }
 
@@ -25,24 +26,20 @@ export class ProductsService extends PrismaClient implements OnModuleInit {
     const { quantity, ...rest } = createProductDto;
 
     try {
-
       const newProduct = await this.product.create({ data: rest });
 
-      this.clientProxy.emit("product.created", {
+      this.clientProxy.emit('product.created', {
         productId: newProduct.id,
         quantity,
       });
 
       return newProduct;
-
     } catch (error) {
       throw new RpcException({
         statusCode: 500,
         message: error.message,
-      })
+      });
     }
-
-
   }
 
   async getAll(paginationDto: PaginationDto) {

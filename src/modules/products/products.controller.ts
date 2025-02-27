@@ -6,7 +6,7 @@ import { CreateProductDto } from './dto';
 
 @Controller()
 export class ProductsController {
-  constructor(private readonly productsService: ProductsService) { }
+  constructor(private readonly productsService: ProductsService) {}
 
   @MessagePattern('product.create')
   createProduct(@Payload() productDto: CreateProductDto) {

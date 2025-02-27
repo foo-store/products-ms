@@ -11,7 +11,6 @@ export class PaginationService {
   }
 
   create<T>(paginationDto: PaginationDto, data: T, total: number) {
-
     const totalPages = Math.ceil(total / paginationDto.limit);
 
     return {
@@ -19,7 +18,7 @@ export class PaginationService {
         page: paginationDto.page,
         limit: paginationDto.limit,
         total,
-        totalPages
+        totalPages,
       },
       data,
     };
