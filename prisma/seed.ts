@@ -1,6 +1,8 @@
-import { Prisma, PrismaClient, Product } from '@prisma/client'
 import { faker } from '@faker-js/faker';
+import { Prisma, PrismaClient } from '@prisma/client';
+import * as dotenv from 'dotenv';
 
+dotenv.config();
 
 const prisma = new PrismaClient()
 
@@ -9,7 +11,7 @@ async function main() {
   await prisma.product.deleteMany();
   await prisma.$queryRaw(Prisma.sql`DELETE FROM sqlite_sequence WHERE NAME='Product';`);
 
-  const totalProducts = 200;
+  const totalProducts = parseInt(process.env.PRODUCTS_MIN_ITEMS || '100');
 
   const products = Array.from({ length: totalProducts }, (_, i) => ({
     name: faker.commerce.productName(),
